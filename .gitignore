@@ -1,0 +1,9 @@
+medisoft Summary.txt
+Client/node_modules/
+Client/.env
+
+Server/.env
+
+Server/node_modules/
+
+Server/uploads
