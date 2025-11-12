@@ -1,4 +1,7 @@
-**Medisoft 2.0**
+<h1>Medisoft 2.0</h2>
+
+Following clean Architecture along with the MVC in the backend and optimizing frontend with the Protected routes to enhance the security of the application.
+
 Benefits for the Hospital
 Improved Operational Efficiency:
 
