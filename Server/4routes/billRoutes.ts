@@ -1,4 +1,4 @@
-import {createOrder,verifyPayment } from '../controllers/billController.js';
+import {createOrder,verifyPayment } from '../1controllers/billController.js';
 import express from 'express';
 
 const router = express.Router();

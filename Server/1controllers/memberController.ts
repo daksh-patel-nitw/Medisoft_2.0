@@ -1,6 +1,6 @@
 import memberModel from "../models/people.js";
 import { generateId } from '../utils/helperUtils.js';
-import { getDocTimings } from "../services/getDoctorTimings.js";
+import { getDocTimings } from "../3services/getDoctorTimings.js";
 import { getItem, updateHelper } from '../utils/helperUtils.js';
 import { SignUp, deleteLogin } from '../utils/authData.js';
 import mongoose from 'mongoose';
