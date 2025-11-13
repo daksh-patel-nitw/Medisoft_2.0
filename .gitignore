@@ -7,3 +7,7 @@ Server/.env
 Server/node_modules/
 
 Server/uploads
+
+Server/package-lock.json
+
+Server/dist

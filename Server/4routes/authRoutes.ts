@@ -1,6 +1,6 @@
-import { deleteLogin, validateUser, makeNewLogin, refreshToken } from '../controllers/authController.js';
+import { deleteLogin, validateUser, makeNewLogin, refreshToken } from '../1controllers/authController.js';
 import express from 'express';
-import authenticate from '../middlewares/authenticate.js'; 
+import authenticate from '../2middlewares/authenticate.js'; 
 
 const router = express.Router();
 

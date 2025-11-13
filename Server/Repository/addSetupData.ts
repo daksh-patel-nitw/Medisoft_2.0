@@ -1,22 +1,35 @@
-import pid from '../models/helper.js';
-import login from '../models/login.js';
+import pid from '../models/helper';
+import login from '../models/login';
 
-const records1 = [
+interface LoginRecord {
+  mId: string;
+  uname: string;
+  password: string;
+  type: string;
+  dep: string;
+}
+
+interface HelperRecord {
+  name: string;
+  content: (string | number)[];
+}
+
+const records1: LoginRecord[] = [
   { mId: 'admin', uname: 'admin', password: 'admin', type: 'admin', dep: 'admin' },
   { mId: 'opd2', uname: 'opd2', password: 'opd2', type: 'opd2', dep: 'orthopedic' },
 ];
 
-const records2 = [
+const records2: HelperRecord[] = [
   { name: 'roles', content: ['doctor', 'laboratorist', 'nurse', 'pharmacist'] },
   { name: 'pid', content: [1] },
   { name: 'eid', content: [1] },
   { name: 'dep', content: ['orthopedic', 'neurologist', 'cardiologist', 'endocrinologist', 'gynecologist'] },
-  { name: 'medicineType', content: ['tablet', 'capsule', 'injection', 'ointment', 'drop', 'inhaler', 'cream', 'gel', 'lotion', 'shampoo', 'spray', 'powder', 'mouthwash', 'paste', 'emulsion', 'bar', 'soap'] }
+  { name: 'medicineType', content: ['tablet', 'capsule', 'injection', 'ointment', 'drop', 'inhaler', 'cream', 'gel', 'lotion', 'shampoo', 'spray', 'powder', 'mouthwash', 'paste', 'emulsion', 'bar', 'soap'] },
 ];
 
-export const insertData = async () => {
+export const insertData = async (): Promise<void> => {
   try {
-    
+
     for (const record of records1) {
       const exists = await login.findOne({ mId: record.mId });
       if (!exists) {
@@ -39,6 +52,6 @@ export const insertData = async () => {
 
     console.log('Setup data insertion completed!');
   } catch (error) {
-    console.error('Error inserting setup data:', error);
+    console.error('Error inserting setup data.', error);
   }
 };

@@ -1,5 +1,5 @@
 import express from 'express';
-import { updateDoctorDetails, getPatientNamesId,addMember, getAdminEmployee, updateRole,getDoctorByDepartment, getDoctortimings, getDoctorDetails, deleteRole, getMemberWithId,getRolesDeps,updateRoleDeps,getFilteredPatientNamesId } from '../controllers/memberController.js';
+import { updateDoctorDetails, getPatientNamesId,addMember, getAdminEmployee, updateRole,getDoctorByDepartment, getDoctortimings, getDoctorDetails, deleteRole, getMemberWithId,getRolesDeps,updateRoleDeps,getFilteredPatientNamesId } from '../1controllers/memberController.js';
 const router = express.Router();
 
 //adding new members

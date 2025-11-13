@@ -1,8 +1,7 @@
-import { confirmAppointment, deleteAppointment, diagnoseOpd, getAllPatientApps, getCounter2app, getDoctorApps, getOPDappointment, getPatientApp, makeAppointment,confirmTheBill, getAllBill, queuescreen, seeappointment, updateIPDpat,getIPDPatients,getIPDAppointment } from '../controllers/appointmentController.js';
+import { confirmAppointment, deleteAppointment, diagnoseOpd, getAllPatientApps, getCounter2app, getDoctorApps, getOPDappointment, getPatientApp, makeAppointment,confirmTheBill, getAllBill, queuescreen, seeappointment, updateIPDpat,getIPDPatients,getIPDAppointment } from '../1controllers/appointmentController';
 
 import express from 'express';
 const router = express.Router();
-
 
 //-------------------------Bill Routes -----------------------------
 
@@ -67,10 +66,6 @@ router.get('/patient/:pid',getPatientApp);
 router.get('/doctor/:did',getDoctorApps);
 
 //--------------------Routes for Doctor-------------------
-
-
-
-
 
 // http://localhost:5000/api/seeappointment/E000000C
 router.get('/reception/:id',seeappointment);
