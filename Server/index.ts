@@ -2,7 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { insertData } from './Repository/addSetupData';
+import { insertData } from './de.Repository/addSetupData';
 
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';

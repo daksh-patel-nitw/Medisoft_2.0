@@ -1,4 +1,4 @@
-import BillModel from '../models/bill.js';
+import BillModel from '../de.models/bill.js';
 
 const generateBill = async (price, aid, description, type, id, session) => {
   try {

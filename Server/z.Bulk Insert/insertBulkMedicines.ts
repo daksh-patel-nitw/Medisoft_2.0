@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGO_URI)
     });
 
 // Medicine Model (Assuming it's already created)
-import Medicine from '../models/medicineInventory.js'; // Adjust path if needed
+import Medicine from '../de.models/medicineInventory.js'; // Adjust path if needed
 
 // Dummy Medicines Data
 const bulkMedicines = Array.from({ length: 50 }, (_, i) => ({

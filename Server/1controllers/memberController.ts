@@ -1,4 +1,4 @@
-import memberModel from "../models/people.js";
+import memberModel from "../de.models/people.js";
 import { generateId } from '../utils/helperUtils.js';
 import { getDocTimings } from "../3services/getDoctorTimings.js";
 import { getItem, updateHelper } from '../utils/helperUtils.js';

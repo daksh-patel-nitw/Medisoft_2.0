@@ -1,4 +1,4 @@
-import appointmentModel from '../models/appointment.js'
+import appointmentModel from '../de.models/appointment.js'
 import { addTimings, removeTimings } from '../3services/getDoctorTimings.js';
 import generateBill, { confirmBill } from '../utils/billUtils.js';
 import { updateMember } from './memberController.js';
