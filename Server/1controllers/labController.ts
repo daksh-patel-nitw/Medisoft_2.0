@@ -1,5 +1,5 @@
-import labModel from "../models/laboratoryInventory.js";
-import labPrescriptionModel from "../models/laboratoryPrescription.js";
+import labModel from "../de.models/laboratoryInventory.js";
+import labPrescriptionModel from "../de.models/laboratoryPrescription.js";
 import generateBill, { confirmBill } from '../utils/billUtils.js';
 
 // FileUpload 

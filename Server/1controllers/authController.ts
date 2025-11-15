@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import loginModel from '../models/login.js';
+import loginModel from '../de.models/login.js';
 import dotenv from 'dotenv';
 import { SignUp} from '../utils/authData.js';
 dotenv.config();

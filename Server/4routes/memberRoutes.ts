@@ -28,8 +28,6 @@ router.post('/updateDetails',updateDoctorDetails);
 //Employee Roles and Departments in the hospital
 router.get('/rolesDeps/:option',getRolesDeps);
 
-//updating the role OR deps of the employee for the admin panel
-router.post('/roleDeps',updateRoleDeps);
 
 //Employee data for Admin
 router.get('/admin',getAdminEmployee);

@@ -1,5 +1,5 @@
 import bcrypt from 'bcryptjs';
-import loginModel from '../models/login.js';
+import loginModel from '../de.models/login.js';
 
 
 export const SignUp = async (mid, name, role, password, security_phrase,dep,session) => {

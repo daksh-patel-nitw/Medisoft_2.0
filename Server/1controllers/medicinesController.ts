@@ -1,5 +1,5 @@
-import medicineModel from '../models/medicineInventory.js';
-import prescriptionModel from '../models/medicinePrescription.js';
+import medicineModel from '../de.models/medicineInventory.js';
+import prescriptionModel from '../de.models/medicinePrescription.js';
 import generateBill, { confirmBill } from '../utils/billUtils.js';
 import { getItem, updateOnlyContentHelper, removeContentHelper } from '../utils/helperUtils.js';
 

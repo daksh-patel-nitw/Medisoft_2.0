@@ -1,6 +1,6 @@
-import roomCategoryModel from '../models/roomCategory.js';
-import roomModel from '../models/rooms.js';
-import roomInventoryModel from '../models/roomsInventory.js';
+import roomCategoryModel from '../de.models/roomCategory.js';
+import roomModel from '../de.models/rooms.js';
+import roomInventoryModel from '../de.models/roomsInventory.js';
 import generateBill from '../utils/billUtils.js';
 import { getItem } from '../utils/helperUtils.js';
 import {bookAppointment} from './appointmentController.js';

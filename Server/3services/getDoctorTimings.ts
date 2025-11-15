@@ -1,4 +1,4 @@
-import timingModel from "../models/timings.js"
+import timingModel from "../de.models/timings.js"
 import mongoose from "mongoose";
 
 export const getDocTimings=async(did,date)=>{
