@@ -1,5 +1,5 @@
-import pid from '../de.models/helper';
-import login from '../de.models/login';
+import pid from '../Models/GlobalMetadata';
+import login from '../Models/login';
 
 interface LoginRecord {
   mId: string;

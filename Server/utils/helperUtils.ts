@@ -1,4 +1,4 @@
-import helper from '../de.models/helper.js';
+import helper from '../Models/GlobalMetadata.js';
 
 //--------------------------------Helper-------------------------------------
 
@@ -14,6 +14,14 @@ export const updateOnlyContentHelper = async (name, value,session) => {
     { name }, 
     { $push: { content: value } },
     { new: true,session } 
+  );
+  return true;
+};
+export const updateOnlyContentHelper = async (name, value) => {
+  const doc = await helper.findOneAndUpdate(
+    { name }, 
+    { $push: { content: value } },
+    { new: true} 
   );
   return true;
 };

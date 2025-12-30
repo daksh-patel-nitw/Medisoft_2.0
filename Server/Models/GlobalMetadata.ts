@@ -8,11 +8,12 @@ const UserSchema=new Schema(
             required:true
         },
         content:{
-            type:[mongoose.Schema.Types.Mixed],
+            type:mongoose.Schema.Types.Mixed,
             required:true
         }
     },{
-        versionKey:false
+        versionKey:false,
+        timestamps: true
     }
 );
 

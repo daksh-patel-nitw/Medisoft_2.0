@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 const UserSchema = new Schema(
     {
-        mid: {
+        eid: {
             type: String,
             required: true,
             index: true
@@ -51,19 +51,6 @@ const UserSchema = new Schema(
             enum: ['M', 'F', 'O'],
             required: true
         }, 
-        type: {
-            type: String,
-            enum: ['patient', 'employee']
-        },
-
-        //Patient Required details
-        weight: Number,
-        height: Number,
-        allergy: String,
-        conditions: String,
-        others: String,
-
-        //Doctor Required details
         degree: String,
         college: String,
         role: String,
@@ -79,6 +66,6 @@ const UserSchema = new Schema(
 }
 );
 
-const memberModel = model("member", UserSchema);
+const memberModel = model("employee", UserSchema);
 
 export default memberModel;
