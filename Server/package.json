@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "start": "node dist/index.js",
-    "dev": "ts-node index.ts",
+    "dev": "tsx index.ts",
     "test_normal": "jest",
     "test": "jest --watch"
   },
@@ -36,9 +36,12 @@
     "@types/jest": "^30.0.0",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^24.10.1",
+    "@types/nodemailer": "^7.0.4",
     "jest": "^30.2.0",
     "mongodb-memory-server": "^10.3.0",
     "ts-jest": "^29.4.5",
+    "ts-node": "^10.9.2",
+    "tsx": "^4.21.0",
     "typescript": "^5.9.3"
   }
 }

@@ -2,10 +2,10 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
-import { insertData } from './de.Repository/addSetupData';
-
 import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
+
+import adminRoutes from './Routes/Admin.Route';
 
 // import authRoutes from './routes/authRoutes';
 // import medicineRoutes from './routes/medicineRoutes';
@@ -14,6 +14,7 @@ import fileUpload from 'express-fileupload';
 // import memberRoutes from './routes/memberRoutes';
 // import appointmentRoutes from './routes/appointmentRoutes';
 // import billRoutes from './routes/billRoutes';
+import {errorMiddleware} from './utils/middleWareHandleError.js';
 
 
 // Load environment variables
@@ -32,6 +33,7 @@ app.use(fileUpload({
 // Enable all CORS requests
 app.use(cors());
 
+app.use('/api', adminRoutes);
 // Use the APIs
 // app.use('/api', authRoutes);
 // app.use('/pharmacy', medicineRoutes);
@@ -40,13 +42,14 @@ app.use(cors());
 // app.use('/member', memberRoutes);
 // app.use('/appointment', appointmentRoutes);
 // app.use('/bill',billRoutes);
+app.use(errorMiddleware);
 
 
 // Connecting to mongoose Database using MONGO_URI from .env
 mongoose.connect(process.env.MONGO_URI!)
     .then(() => {
         console.log('Connected to MongoDB')
-        insertData();
+        // insertData();
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
