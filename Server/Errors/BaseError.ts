@@ -2,32 +2,34 @@ export class AppError extends Error {
   constructor(
     public statusCode: number,
     public code: string,
-    message: string
+    message: string,
+    public flag: boolean
   ) {
     super(message);
   }
 }
 
-export const badRequestError = (msg: string) =>{
-    throw new AppError(400, 'BAD_REQUEST', msg);
+export const badRequestError = (msg: string, flag: boolean = false) => {
+  new AppError(400, 'BAD_REQUEST', msg, flag);
 }
 
-export const unauthorizedError = (msg = 'Unauthorized') =>{
-    throw new AppError(401, 'UNAUTHORIZED', msg);
+export const unauthorizedError = (msg = 'Unauthorized', flag: boolean = false) => {
+  new AppError(401, 'UNAUTHORIZED', msg, flag);
 }
 
-export const forbiddenError = (msg = 'Forbidden') =>{
-    throw new AppError(403, 'FORBIDDEN', msg);
+export const forbiddenError = (msg = 'Forbidden', flag: boolean = false) => {
+  new AppError(403, 'FORBIDDEN', msg, flag);
 }
 
-export const notFoundError = (msg: string) =>{
-    throw new AppError(404, 'NOT_FOUND', msg);
+export const notFoundError = (msg: string, flag: boolean = false) => {
+  new AppError(404, 'NOT_FOUND', msg, flag);
 }
 
-export const conflictError = (msg: string) =>{
-    throw new AppError(409, 'CONFLICT', msg);
+export const conflictError = (msg: string, flag: boolean = false) => {
+  new AppError(409, 'CONFLICT', msg, flag);
 }
 
-export const serverError = (msg: string) =>{
-    throw new AppError(500, '', msg);
+export const serverError = (msg: string, flag: boolean = false) => {
+  new AppError(500, '', msg, flag);
 }
+

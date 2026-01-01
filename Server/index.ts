@@ -1,59 +1,18 @@
-import express from 'express';
+import { app } from './app';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import cors from 'cors';
-import cookieParser from 'cookie-parser';
-import fileUpload from 'express-fileupload';
-
-import adminRoutes from './Routes/Admin.Route';
-
-// import authRoutes from './routes/authRoutes';
-// import medicineRoutes from './routes/medicineRoutes';
-// import labRoutes from './routes/laboratoryRoutes';
-// import roomRoutes from './routes/roomRoutes';
-// import memberRoutes from './routes/memberRoutes';
-// import appointmentRoutes from './routes/appointmentRoutes';
-// import billRoutes from './routes/billRoutes';
-import {errorMiddleware} from './utils/middleWareHandleError.js';
-
 
 // Load environment variables
 dotenv.config();
-
-const app = express();
-
-app.use(cookieParser());
-app.use(express.json());
-app.use(fileUpload({
-    limits: { fileSize: 1000 * 1024 }, // 1MB
-    abortOnLimit: true,
-    responseOnLimit: 'File too large',
-  }));
-
-// Enable all CORS requests
-app.use(cors());
-
-app.use('/api', adminRoutes);
-// Use the APIs
-// app.use('/api', authRoutes);
-// app.use('/pharmacy', medicineRoutes);
-// app.use('/lab', labRoutes);
-// app.use('/room', roomRoutes);
-// app.use('/member', memberRoutes);
-// app.use('/appointment', appointmentRoutes);
-// app.use('/bill',billRoutes);
-app.use(errorMiddleware);
-
 
 // Connecting to mongoose Database using MONGO_URI from .env
 mongoose.connect(process.env.MONGO_URI!)
     .then(() => {
         console.log('Connected to MongoDB')
-        // insertData();
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);
-        process.exit(1);  // Exit the process with failure
+        process.exit(1);
     });
 
 // Just for testing purpose

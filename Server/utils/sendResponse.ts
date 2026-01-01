@@ -1,6 +1,6 @@
 // src/utils/responseHelper.ts
 import { Response } from 'express';
-import { ApiResponseDTO } from '../Dtos/ApiResponse.dto.js';
+import { ApiResponseDTO } from '../Dtos/global/ApiResponse.dto';
 
 /**
  * Standardized success response helper.

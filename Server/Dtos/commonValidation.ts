@@ -1,5 +1,5 @@
 
-import { badRequestError } from "../Errors/BaseError.js";
+import { badRequestError } from "../Errors/BaseError";
 
 //-------------------------------- Check if Object- -------------------------------------
 //---------------------------------------------------------------------------------------
@@ -22,35 +22,36 @@ interface StringOptions {
 export function requireString(
   obj: Record<string, unknown>,
   key: string,
+  flag?:boolean,
   options: StringOptions = {}
 ): string {
   const value:any = obj[key];
 
   // 1. Type Check
   if (typeof value !== 'string') {
-    badRequestError(`${key} must be a string`);
+    throw badRequestError(`${key} must be a string`);
   }
 
   // 2. Length Checks
   if (options.minLength !== undefined && value.length < options.minLength) {
-    badRequestError(`${key} must be at least ${options.minLength} characters`);
+    throw badRequestError(`${key} must be at least ${options.minLength} characters`);
   }
   if (options.maxLength !== undefined && value.length > options.maxLength) {
-    badRequestError(`${key} cannot exceed ${options.maxLength} characters`);
+    throw badRequestError(`${key} cannot exceed ${options.maxLength} characters`);
   }
   if (options.exactLength !== undefined && value.length !== options.exactLength) {
-    badRequestError(`${key} must be exactly ${options.exactLength} characters`);
+    throw badRequestError(`${key} must be exactly ${options.exactLength} characters`);
   }
 
   // 3. Pattern Checks
   if (options.allow === 'letters' && !/^[a-zA-Z]+$/.test(value)) {
-    badRequestError(`${key} must contain only letters`);
+    throw badRequestError(`${key} must contain only letters`);
   }
   if (options.allow === 'digits' && !/^\d+$/.test(value)) {
-    badRequestError(`${key} must contain only digits`);
+    throw badRequestError(`${key} must contain only digits`);
   }
   if (options.allow === 'alphanumeric' && !/^[a-zA-Z0-9]+$/.test(value)) {
-    badRequestError(`${key} must be alphanumeric`);
+    throw badRequestError(`${key} must be alphanumeric`);
   }
 
   return value;
@@ -93,28 +94,28 @@ export function requireInteger(
 
   // 1. Check if it's a number
   if (typeof value !== 'number' || Number.isNaN(value)) {
-    badRequestError(`${key} must be a number`);
+    throw badRequestError(`${key} must be a number`);
   }
 
   // 2. Check if it's an Integer (no decimals)
   if (!Number.isInteger(value)) {
-    badRequestError(`${key} must be an integer`);
+    throw badRequestError(`${key} must be an integer`);
   }
 
   // 3. Digit Count Check (Convert to string to count length)
   if (options.digitCount !== undefined) {
     const digits = Math.abs(value).toString().length;
     if (digits !== options.digitCount) {
-      badRequestError(`${key} must be exactly ${options.digitCount} digits`);
+      throw badRequestError(`${key} must be exactly ${options.digitCount} digits`);
     }
   }
 
   // 4. Value Range Checks
   if (options.min !== undefined && value < options.min) {
-    badRequestError(`${key} must be at least ${options.min}`);
+    throw badRequestError(`${key} must be at least ${options.min}`);
   }
   if (options.max !== undefined && value > options.max) {
-    badRequestError(`${key} must be no more than ${options.max}`);
+    throw badRequestError(`${key} must be no more than ${options.max}`);
   }
 
   return value;

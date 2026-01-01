@@ -1,4 +1,4 @@
-import {assertObject,requireString} from '../commonValidation.js';
+import {assertObject,requireString} from '../commonValidation';
 
 export interface UpdateRoleDepsDTO {
   name: string;

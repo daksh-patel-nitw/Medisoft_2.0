@@ -1,7 +1,7 @@
 import { RequestHandler} from "express";
-import { createUpdateRoleDepsDTO } from "../Dtos/admin/ChangeRoles.Dto.js";
-import { UpdateRoleDepsServ } from "../Services/Admin.Service.js";
-import { sendSuccess } from "../utils/sendResponse.js";
+import { createUpdateRoleDepsDTO } from "../Dtos/admin/ChangeRoles.Dto";
+import { UpdateRoleDepsServ } from "../Services/Admin.Service";
+import { sendSuccess } from "../utils/sendResponse";
 
 export const updateRoleDeps: RequestHandler = async (req, res, next) => {
   try {
