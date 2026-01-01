@@ -1,5 +1,5 @@
 import { Request, Response, NextFunction } from 'express';
-import { AppError } from '../Errors/BaseError.js';
+import { AppError } from '../Errors/BaseError';
 
 export const errorMiddleware = (
   err: unknown,
@@ -12,7 +12,7 @@ export const errorMiddleware = (
     console.error(`[${err.code}]`, err.message);
     return res.status(err.statusCode).json({
       show: true,
-      message
+      message: err.flag ? err.message : message
     });
   }
   console.error('UNHANDLED ERROR:', err);

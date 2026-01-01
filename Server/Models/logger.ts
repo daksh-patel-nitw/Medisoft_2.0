@@ -3,12 +3,16 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 const UserSchema=new Schema(
     {   
-        name:{
+        user:{
             type:String,
             required:true
         },
-        content:{
-            type:mongoose.Schema.Types.Mixed,
+        operation:{
+            type:String,
+            required:true
+        },
+        status:{
+            type:String,
             required:true
         }
     },{
@@ -17,6 +21,6 @@ const UserSchema=new Schema(
     }
 );
 
-const GlobalMetadataModel = model("globalMetadata", UserSchema);
+const loggerModel = model("logger", UserSchema);
 
-export {GlobalMetadataModel};
+export default loggerModel;

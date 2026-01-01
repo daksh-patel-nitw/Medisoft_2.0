@@ -1,0 +1,16 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Debug Server (tsx)",
+      "runtimeExecutable": "node",
+      "runtimeArgs": ["--inspect", "./node_modules/tsx/dist/cli.js"],
+      "args": ["index.ts"],
+      "cwd": "${workspaceFolder}/Server",
+      "skipFiles": ["<node_internals>/**"],
+      "console": "integratedTerminal"
+    }
+  ]
+}
