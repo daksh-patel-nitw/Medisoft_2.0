@@ -1,7 +1,7 @@
 import { app } from './app';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-
+import { insertData } from './Repository/addSetupData';
 // Load environment variables
 dotenv.config();
 
@@ -9,6 +9,7 @@ dotenv.config();
 mongoose.connect(process.env.MONGO_URI!)
     .then(() => {
         console.log('Connected to MongoDB')
+        insertData();
     })
     .catch((error) => {
         console.error('Error connecting to MongoDB:', error);

@@ -1,0 +1,1 @@
+import { patientModel } from "../Models/patient";

@@ -19,6 +19,4 @@ const UserSchema=new Schema(
     }
 );
 
-const timingModel=model("Timing",UserSchema);
-
-export default timingModel;
+export const timingModel=model("Timing",UserSchema);

@@ -45,6 +45,4 @@ const UserSchema = new Schema(
 );
 
 
-const labPrescriptionModel = model("labPrescription", UserSchema);
-
-export default labPrescriptionModel;
+export const labPrescriptionModel = model("labPrescription", UserSchema);

@@ -66,6 +66,5 @@ const UserSchema = new Schema(
 }
 );
 
-const memberModel = model("employee", UserSchema);
+export const employeeModel = model("employee", UserSchema);
 
-export default memberModel;

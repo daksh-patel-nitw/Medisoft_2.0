@@ -1,8 +1,13 @@
 
 import { badRequestError } from "../Errors/BaseError";
 
-//-------------------------------- Check if Object- -------------------------------------
-//---------------------------------------------------------------------------------------
+/**
+ * Asserts that the provided input is a non-null object.
+ *
+ * @param input - Value to validate
+ * @returns The validated object
+ * @throws Error if the input is not an object
+ */
 export function assertObject(input: unknown): Record<string, unknown> {
   if (typeof input !== 'object' || input === null) {
     throw badRequestError('Payload must be an object');
@@ -10,8 +15,6 @@ export function assertObject(input: unknown): Record<string, unknown> {
   return input as Record<string, unknown>;
 }
 
-//---------------------------------- String Validator -----------------------------------
-//---------------------------------------------------------------------------------------
 interface StringOptions {
   minLength?: number;
   maxLength?: number;
@@ -19,13 +22,23 @@ interface StringOptions {
   allow?: 'letters' | 'digits' | 'alphanumeric' | 'all';
 }
 
+/**
+ * Validates that the specified field is a string and
+ * satisfies the provided length and character constraints.
+ *
+ * @param obj - Input object containing the field
+ * @param key - Field name to validate
+ * @param options - String validation rules (length and allowed characters)
+ * @param flag - Indicates whether the validation error should be UI-visible
+ * @returns Validated string value
+ */
 export function requireString(
   obj: Record<string, unknown>,
   key: string,
-  flag?:boolean,
-  options: StringOptions = {}
+  options: StringOptions = {},
+  flag?: boolean,
 ): string {
-  const value:any = obj[key];
+  const value: any = obj[key];
 
   // 1. Type Check
   if (typeof value !== 'string') {
@@ -57,68 +70,99 @@ export function requireString(
   return value;
 }
 
-//-------------------------------- Email Validator --------------------------------------
-//---------------------------------------------------------------------------------------
-export function requireEmail(
+/**
+ * Validates Name
+ * @param obj - Input object containing the field
+ * @param key - Field name to validate
+ */
+export function requireName(
   obj: Record<string, unknown>,
   key: string
+) {
+  return requireString(obj, key, { minLength: 2, maxLength: 18, allow: 'letters' })
+}
+
+/**
+ * Validates Mobile
+ * @param obj - Input object containing the field
+ * @param key - Field name to validate
+ */
+export function requireMobile(
+  obj: Record<string, unknown>,
+  key: string
+) {
+  return requireString(obj, key, { exactLength: 10, allow: 'digits' })
+}
+
+/**
+ * Validates that the specified field contains a valid email address.
+ *
+ * @param obj - Input object containing the email field
+ * @param key - Field name to validate
+ * @returns Validated email value
+ */
+export function requireEmail(
+  obj: Record<string, unknown>,
+  key: string,
+  dontThrowErrorflag: boolean = false
 ): string {
   const value = obj[key];
+  const message = "Invalid Email";
 
   if (typeof value !== 'string') {
-    throw badRequestError(`${key} must be a string`);
+    throw badRequestError(message);
   }
 
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
   if (!emailRegex.test(value)) {
-    throw badRequestError(`${key} must be a valid email`);
+    if (dontThrowErrorflag)
+      return ""
+    throw badRequestError(message);
   }
 
   return value.toLowerCase();
 }
 
-//------------------------------------ Int Check ----------------------------------------
-//---------------------------------------------------------------------------------------
-interface IntOptions {
-  digitCount?: number; // e.g., 10 for mobile numbers
-  min?: number;        // Value check (e.g. > 18)
-  max?: number;        // Value check (e.g. < 100)
-}
-
-export function requireInteger(
+/**
+ * Validates that the specified field contains a password
+ * matching the required security rules.
+ *
+ * @param obj - Input object containing the password field
+ * @param key - Field name to validate
+ * @returns Validated password value
+ */
+export function requirePassword(
   obj: Record<string, unknown>,
-  key: string,
-  options: IntOptions = {}
-): number {
-  const value:any = obj[key];
+  key: string
+): string {
+  const value = obj[key];
+  const message = "Invalid Password or Username";
 
-  // 1. Check if it's a number
-  if (typeof value !== 'number' || Number.isNaN(value)) {
-    throw badRequestError(`${key} must be a number`);
+  if (typeof value !== 'string') {
+    throw badRequestError(message);
   }
 
-  // 2. Check if it's an Integer (no decimals)
-  if (!Number.isInteger(value)) {
-    throw badRequestError(`${key} must be an integer`);
-  }
-
-  // 3. Digit Count Check (Convert to string to count length)
-  if (options.digitCount !== undefined) {
-    const digits = Math.abs(value).toString().length;
-    if (digits !== options.digitCount) {
-      throw badRequestError(`${key} must be exactly ${options.digitCount} digits`);
-    }
-  }
-
-  // 4. Value Range Checks
-  if (options.min !== undefined && value < options.min) {
-    throw badRequestError(`${key} must be at least ${options.min}`);
-  }
-  if (options.max !== undefined && value > options.max) {
-    throw badRequestError(`${key} must be no more than ${options.max}`);
+  const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$*])[A-Za-z\d@#$*]{8,16}$/;
+  if (!passwordRegex.test(value)) {
+    throw badRequestError(message);
   }
 
   return value;
 }
 
-//---------------------------------------------------------------------------------------
+/**
+ * 
+ * @param obj - Input object containing the password field
+ * @param key - Field name to validate
+ * @returns Validated Boolean value
+ */
+export function requireBool(
+  obj: Record<string, unknown>,
+  key: string
+): boolean {
+  const value = obj[key];
+  if (typeof value !== 'boolean') {
+    throw badRequestError(`Invalid value in ${key}`);
+  }
+  return value;
+}

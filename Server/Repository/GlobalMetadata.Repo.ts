@@ -3,8 +3,8 @@ import {
   badRequestError,
   conflictError,
   notFoundError,
-  serverError,
 } from "../Errors/BaseError";
+import { ClientSession } from "mongoose";
 
 /** 
  * Handles updation/deletion of array key value metadata pairs.
@@ -15,27 +15,24 @@ import {
 export const updateMetadataArray = async (
   key: string,
   data: string,
-  shouldAdd: boolean
+  shouldAdd: boolean,
+  session?:ClientSession
 ) => {
 
   let result, docExists;
 
   if (shouldAdd) {
-    // Logic: Find doc with name 'key' AND where 'content' DOES NOT ($ne) contain 'data'
     result = await GlobalMetadataModel.findOneAndUpdate(
       { name: key, content: { $ne: data } },
       { $push: { content: data } },
-      { new: true }
-    );
-
+      { new: true,session }
+    ).lean();
   } else {
-
     result = await GlobalMetadataModel.findOneAndUpdate(
       { name: key },
       { $pull: { content: data } },
-      { new: true }
-    );
-
+      { new: true,session }
+    ).lean();
   }
 
   if (result) return result;
@@ -46,7 +43,6 @@ export const updateMetadataArray = async (
     throw notFoundError(`The metadata key '${key}' does not exist.`, true);
   }
 
-  // 2. If doc exists, but update failed during ADD, it means it was a duplicate
   if (shouldAdd) {
     throw conflictError(`The value '${data}' already exists in '${key}'.`, true);
   }
@@ -54,21 +50,50 @@ export const updateMetadataArray = async (
   throw badRequestError('Update failed', true);
 };
 
+/**
+ * Fetches a metadata record by its name.
+ * @param key - Metadata name used as lookup key
+ * @returns The matching metadata document, or throws error
+ */
+export const fetchMetadataItem = async (key: string, session?: ClientSession) => {
+  
+  const data = await GlobalMetadataModel.findOne({ name: key }, null, { session }).lean();
+
+  if (!data) {
+    throw notFoundError("Key not found");
+  }
+
+  return data;
+};
+
+/**
+ * Atomically increments a numeric metadata value and returns the updated document.
+ * @param key - The unique identifier/name for the metadata item.
+ * @param session - Optional MongoDB client session for transaction support.
+ * @returns The updated or newly created metadata document.
+ */
 export const incrementId = async (
   key: string,
+  session?: ClientSession
 ) => {
-  return await GlobalMetadataModel.findOneAndUpdate(
+  const result = await GlobalMetadataModel.findOneAndUpdate(
     { name: key },
     { $inc: { content: 1 } },
-    { new: true, upsert: true }
-  );
+    { 
+      new: true,
+      session
+    }
+  ).lean();
+
+  if (!result) {
+    throw notFoundError('Key Not Found');
+  }
+
+  return result;
 };
 
-export const deleteArraydataByKey = async (key: string, data: string) => {
-  return await GlobalMetadataModel.findOneAndDelete({ name: key });
-};
 
-export const deleteMetadataByValue = async (key: string, data: string) => {
-  return await GlobalMetadataModel.findOneAndDelete({ name: key });
-};
+
+
+
 

@@ -37,12 +37,4 @@ app.use('/admin', adminRoutes);
 // app.use('/bill',billRoutes);
 app.use(errorMiddleware);
 
-// Just for testing purpose
-app.get('/', (req, res) => {
-    res.status(500);
-    res.json({
-        message: "Welcome To the REST API",
-    });
-});
-
 export {app};

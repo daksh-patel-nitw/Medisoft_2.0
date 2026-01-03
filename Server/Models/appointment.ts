@@ -65,7 +65,7 @@ const UserSchema=new Schema(
     }
 );
 
-const appointmentModel= model("appointment",UserSchema);
+const AppointmentModel= model("appointment",UserSchema);
 
-export default appointmentModel;
+export {AppointmentModel};
 

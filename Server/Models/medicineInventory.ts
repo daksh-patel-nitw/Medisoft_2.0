@@ -37,6 +37,4 @@ const UserSchema=new Schema(
     }
 );
 
-const medicineCategoryModel = model("medicineCategory", UserSchema);
-
-export default medicineCategoryModel;
+export const medicineCategoryModel = model("medicineCategory", UserSchema);

@@ -24,4 +24,4 @@ const UserSchema=new Schema(
     }
 );
 
-export const chat=mongoose.model("login",UserSchema);
+export const Chat=mongoose.model("login",UserSchema);

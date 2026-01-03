@@ -63,6 +63,4 @@ const UserSchema = new Schema(
   }
 );
 
-const memberModel = model("member", UserSchema);
-
-export default memberModel;
+export const patientModel = model("patient", UserSchema);

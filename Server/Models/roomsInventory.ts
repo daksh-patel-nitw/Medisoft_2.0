@@ -31,6 +31,5 @@ const UserSchema=new Schema(
     }
 );
 
-const roomInventoryModel = model("roomInventory", UserSchema);
+export const roomInventoryModel = model("roomInventory", UserSchema);
 
-export default roomInventoryModel;
