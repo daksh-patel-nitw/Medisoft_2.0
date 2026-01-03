@@ -3,11 +3,12 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const UserSchema = new Schema(
-    {   
-        mid:{
+    {
+        mid: {
             type: String,
             required: true
         },
+        email:String,
         name: {
             type: String,
             required: true
@@ -16,15 +17,21 @@ const UserSchema = new Schema(
             type: String,
             required: true
         },
-        panel: String,
+        role: {
+            type: String,
+            required: true
+        },
+        security_phrase: String,
         dep: String,
-        security_phrase:String,
+        first:{
+            type:Boolean,
+            default:true
+        }
     },
     {
         versionKey: false
     }
 );
 
-const loginModel = model("login", UserSchema);
+export const loginModel = model("login", UserSchema);
 
-export default loginModel;

@@ -17,6 +17,4 @@ const UserSchema=new Schema(
     }
 );
 
-const GlobalMetadataModel = model("globalMetadata", UserSchema);
-
-export {GlobalMetadataModel};
+export const GlobalMetadataModel = model("globalMetadata", UserSchema);

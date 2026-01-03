@@ -1,20 +1,22 @@
 import express from 'express';
 import {updateRoleDeps,getEmployees,addRole,deleteRole} from '../Controllers/Admin.Controller';
+import { requireAuth } from '../Middlewares/requireAuth';
+import { authorize } from '../Middlewares/authorize';
 
 const router = express.Router();
+// router.use(requireAuth);
+// router.use(authorize('admin'));
 
-console.log('Admin routes loaded');
-
-//updating the role OR deps of the employee for the admin panel
+//Update the Roles and Departments
 router.post('/',updateRoleDeps);
-console.log('Admin Roy=ue after updateRolesDeps.')
+
 //Employee data for Admin
 router.get('/',getEmployees);
 
-//update the roles of the employee for the admin panel
+//Add new roles for the employee for the admin panel
 router.patch('/',addRole);
 
-//Delete the roles
-router.delete('/admin/:id',deleteRole);
+//Delete the roles for the employee
+router.delete('/employee/:id',deleteRole);
 
 export default router;

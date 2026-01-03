@@ -36,6 +36,5 @@ const BillSchema = new Schema(
   }
 );
 
-const BillModel = model('Bill', BillSchema);
+export const BillModel = model('Bill', BillSchema);
 
-export default BillModel;

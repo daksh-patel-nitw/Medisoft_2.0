@@ -28,6 +28,4 @@ const UserSchema=new Schema(
     }
 );
 
-const labModel = model("lab", UserSchema);
-
-export default labModel;
+export const LabModel = model("lab", UserSchema);

@@ -41,6 +41,4 @@ const { Schema, model } = mongoose;
     }
 );
 
-const roomModel = model("roomCategory", UserSchema);
-
-export default roomModel;
+export const roomModel = model("roomCategory", UserSchema);

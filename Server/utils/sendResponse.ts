@@ -7,8 +7,8 @@ import { ApiResponseDTO } from '../Dtos/global/ApiResponse.dto';
  * @param res - Express Response object
  * @param data - The payload to send
  * @param message - A human-readable message
- * @param statusCode - HTTP Status code (default 200)
  * @param show - Variable to show the message (default true)
+ * @param statusCode - HTTP Status code (default 200)
  */
 export const sendSuccess = <T>(
   res: Response,

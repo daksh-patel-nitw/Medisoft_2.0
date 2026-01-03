@@ -45,6 +45,4 @@ const medicinePrescriptionSchema = new Schema(
 }
 );
 
-const medicinePrescriptionModel = model("medicinePrescription", medicinePrescriptionSchema);
-
-export default medicinePrescriptionModel;
+export const medicinePrescriptionModel = model("medicinePrescription", medicinePrescriptionSchema);

@@ -21,6 +21,4 @@ const UserSchema=new Schema(
     }
 );
 
-const loggerModel = model("logger", UserSchema);
-
-export default loggerModel;
+export const loggerModel = model("logger", UserSchema);
