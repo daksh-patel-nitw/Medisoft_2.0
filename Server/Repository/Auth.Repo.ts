@@ -1,5 +1,5 @@
-import { notFoundError } from '../Errors/BaseError.js';
-import { loginModel } from '../Models/login.js';
+import { notFoundError } from '../Errors/BaseError';
+import { loginModel } from '../Models/login';
 import { ClientSession } from 'mongoose';
 
 /**
@@ -43,7 +43,7 @@ export const login = async (
   value: string
 ) => {
   const user = await loginModel.findOne({ [key]: value });
-
+  
   if (!user) {
     throw notFoundError('User not found!');
   }
