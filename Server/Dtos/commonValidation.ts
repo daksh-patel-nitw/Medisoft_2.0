@@ -1,5 +1,5 @@
 
-import { badRequestError } from "../Errors/BaseError";
+import { badRequestError, unauthorizedError } from "../Errors/BaseError";
 
 /**
  * Asserts that the provided input is a non-null object.
@@ -144,7 +144,7 @@ export function requirePassword(
 
   const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$*])[A-Za-z\d@#$*]{8,16}$/;
   if (!passwordRegex.test(value)) {
-    throw badRequestError(message);
+    throw unauthorizedError(message);
   }
 
   return value;

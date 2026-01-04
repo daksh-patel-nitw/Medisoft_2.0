@@ -1,6 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import jwt from 'jsonwebtoken';
 import { unauthorizedError } from '../Errors/BaseError';
+import dotenv from 'dotenv';
+import path from 'path';
+
+// Load .env from one folder up
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
+
 interface UserPayload {
   id: string;
   username: string;

@@ -1,10 +1,13 @@
 import bcrypt from 'bcryptjs';
 import jwt, {TokenExpiredError} from 'jsonwebtoken';
-import { login } from '../Repository/auth.Repo';
+import { login } from '../Repository/Auth.Repo';
 import { forbiddenError, unauthorizedError } from '../Errors/BaseError';
 import { authTokenInterface, AuthTokenPayload } from '../Dtos/auth/Token.DTO';
 import { LoginDTO } from '../Dtos/auth/Login.Dto';
+import dotenv from 'dotenv';
+import path from 'path';
 
+dotenv.config({ path: path.resolve(__dirname, '../.env') });
 const SECRET_KEY = process.env.SECRET_KEY;
 const REFRESH_SECRET_KEY = process.env.REFRESH_SECRET_KEY;
 
@@ -27,7 +30,7 @@ export const loginUserService = async (body: LoginDTO) => {
 
   const isPasswordValid = await bcrypt.compare(body.password, user.password);
   if (!isPasswordValid) {
-    throw unauthorizedError("Invalid credentials")
+    throw unauthorizedError("Invalid credentials",true)
   }
 
   const data: authTokenInterface = {

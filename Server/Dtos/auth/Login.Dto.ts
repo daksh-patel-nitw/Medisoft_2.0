@@ -1,4 +1,4 @@
-import { assertObject, requireEmail, requireName, requirePassword } from '../commonValidation';
+import { assertObject, requireEmail, requireName, requirePassword, requireString } from '../commonValidation';
 
 type BaseLogin = {
     password: string;
@@ -26,7 +26,7 @@ export function createLoginBodyDTO(
 
     if (email === '') {
         return {
-            id: requireName(body, 'uname'),
+            id: requireString(body, 'uname'),
             password
         }
     } else {

@@ -1,5 +1,6 @@
 import {GlobalMetadataModel} from '../Models/GlobalMetadata';
 import {loginModel} from '../Models/login';
+import { createPassword } from "../utils/passwordUtil";
 
 interface LoginRecord {
   mid: string;
@@ -7,6 +8,7 @@ interface LoginRecord {
   password: string;
   role: string;
   dep: string;
+  email:string;
 }
 
 interface HelperRecord {
@@ -15,8 +17,8 @@ interface HelperRecord {
 }
 
 const records1: LoginRecord[] = [
-  { mid: 'admin', name: 'admin', password: 'admin', role: 'admin', dep: 'admin' },
-  { mid: 'opd2', name: 'opd2', password: 'opd2', role: 'opd2', dep: 'orthopedic' },
+  { mid: 'admin', name: 'admin', password: 'admin',email:'admin@test.com', role: 'admin', dep: 'admin' },
+  { mid: 'opd2', name: 'opd2', password: 'opd2', email:'opd2@test.com',role: 'opd2', dep: 'orthopedic' },
 ];
 
 const records2: HelperRecord[] = [
@@ -29,10 +31,11 @@ const records2: HelperRecord[] = [
 
 export const insertData = async (): Promise<void> => {
   try {
-
+    const adminPass=await createPassword('Admin@123')
     for (const record of records1) {
       const exists = await loginModel.findOne({ mId: record.mid });
       if (!exists) {
+        record.password=adminPass;
         await loginModel.create(record);
         console.log(`Inserted login record: ${record.mid}`);
       } else {

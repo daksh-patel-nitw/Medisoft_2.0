@@ -13,6 +13,5 @@ export const generatePassword = () => {
 export const createPassword = async (password: string) => {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(String(password), saltRounds);
-
     return hashedPassword
 }

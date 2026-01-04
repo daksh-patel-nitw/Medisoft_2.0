@@ -4,14 +4,8 @@ import cookieParser from 'cookie-parser';
 import fileUpload from 'express-fileupload';
 
 import adminRoutes from './Routes/Admin.Route';
+import loginRoutes from './Routes/Open.Routes';
 
-// import authRoutes from './routes/authRoutes';
-// import medicineRoutes from './routes/medicineRoutes';
-// import labRoutes from './routes/laboratoryRoutes';
-// import roomRoutes from './routes/roomRoutes';
-// import memberRoutes from './routes/memberRoutes';
-// import appointmentRoutes from './routes/appointmentRoutes';
-// import billRoutes from './routes/billRoutes';
 import {errorMiddleware} from './Middlewares/handleError';
 
 const app = express();
@@ -26,6 +20,7 @@ app.use(fileUpload({
 // Enable all CORS requests
 app.use(cors());
 
+app.use('/', loginRoutes);
 app.use('/admin', adminRoutes);
 // Use the APIs
 // app.use('/api', authRoutes);
