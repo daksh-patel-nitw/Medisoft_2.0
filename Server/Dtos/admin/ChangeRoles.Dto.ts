@@ -2,15 +2,12 @@ import { assertObject, requireString } from '../commonValidation';
 
 export interface UpdateRoleDepsDTO {
   name: string;
-  data: string
+  data: string;
 }
 
 /**
- * Creates and validates an UpdateRoleDepsDTO from an unknown input.
- *
  * Ensures the input is a valid object and extracts the required fields
  * with proper validation.
- *
  * @param input - Raw input to be validated and transformed
  * @returns A validated UpdateRoleDepsDTO
  */
