@@ -4,6 +4,7 @@ import {updateMetadataArray,fetchMetadataItem} from '../Repository/GlobalMetadat
 import {fetchEmployees} from '../Repository/Employee.Repo';
 import { SignUpEmployeeDTO } from '../Dtos/global/SignUpEmployee.dto';
 import { generatePassword } from '../utils/passwordUtil';
+import { deleteLogin } from '../Repository/Auth.Repo';
 
 /**
  * Applies updates to the role dependencies metadata using the provided payload.
@@ -49,9 +50,23 @@ export const getEmployeesService = async () => {
   }
 }
 
-
-export const assignRoleToEmployee = async(body:any)=>{
-  
+/**
+ * 
+ * @param body 
+ */
+export const assignRoleToEmployee = async(body:any)=>{  
   const password=generatePassword();
   // await SignUp(body.)
 }
+
+/**
+ * 
+ * @param mid 
+ */
+export const deleteRoleOfEmployeeService = async (mid: string) => {
+  const deletedUser = await deleteLogin(mid);
+  return {
+    name: deletedUser.name,
+    role: deletedUser.role
+  };
+};

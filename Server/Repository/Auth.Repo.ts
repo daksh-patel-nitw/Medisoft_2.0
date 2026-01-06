@@ -13,22 +13,21 @@ import { ClientSession } from 'mongoose';
  * @param security_phrase 
  */
 export const SignUp = async (
-    mid: string,
-    name: string,
-    role: string,
-    password: string,
-    session?: ClientSession,
-    dep?: string
+  mid: string,
+  name: string,
+  role: string,
+  password: string,
+  session?: ClientSession,
+  dep?: string
 ) => {
-    const newLogin = new loginModel({
-        mid,
-        name,
-        password,
-        role,
-        ...(dep && { dep })
-    });
-
-    await newLogin.save({ session });
+  const newLogin = new loginModel({
+    mid,
+    name,
+    password,
+    role,
+    ...(dep && { dep })
+  });
+  await newLogin.save({ session });
 }
 
 /**
@@ -43,25 +42,20 @@ export const login = async (
   value: string
 ) => {
   const user = await loginModel.findOne({ [key]: value });
-  
   if (!user) {
     throw notFoundError('User not found!');
   }
-
   return user;
 };
 
 /**
  * Blocks the user login
  * @param mid - employee/patient id
- * @returns 
  */
-export const deleteLogin = async (mid:string) => {
-
-    const deletedUser = await loginModel.findOneAndDelete({ mid: mid });
-
-    if (!deletedUser) {
-        throw new Error('User not found');
-    }
-    return "success";
+export const deleteLogin = async (mid: string) => {
+  const deletedUser = await loginModel.findOneAndDelete({ mid: mid });
+  if (!deletedUser) {
+    throw notFoundError('User not found');
+  }
+  return deletedUser;
 };

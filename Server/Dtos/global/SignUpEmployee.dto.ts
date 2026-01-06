@@ -2,7 +2,8 @@ import { ClientSession } from "mongoose";
 import { requireString,assertObject, requirePassword } from "../commonValidation";
 
 export interface SignUpEmployeeDTO{
-    eid:string,
+    eid?:string,
+    pid?:string,
     name:string,
     role:string,
     password:string,
@@ -11,10 +12,10 @@ export interface SignUpEmployeeDTO{
     session?:ClientSession
 };
 
-export const createSignUpEmployeeDTO=(input:unknown)=>{
+export const createSignUpEmployeeDTO=(input:SignUpEmployeeDTO,field:string)=>{
     const body = assertObject(input);
     return {
-        eid:requireString(body,'eid',{minLength:7}),
+        [field]:requireString(body,field,{minLength:7}),
         name:requireString(body,'name',{maxLength:15,minLength:2,allow:'letters'}),
         role:requireString(body,'role',{maxLength:15,minLength:2,allow:'letters'}),
         password:requirePassword(body,'password'),
