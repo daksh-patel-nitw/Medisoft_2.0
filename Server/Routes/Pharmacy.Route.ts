@@ -49,4 +49,3 @@ router.put('/:value', controller.updateMedicine);
 router.post('/sell', controller.sellMedicine);
 
 export default router;
-objectiwanttoadding bas agar bake iwiil adding the router deatails hrre iwill kasu pan writting 
